@@ -6,6 +6,7 @@ div {
   width: 60%;
   margin: auto;
   background-color: gray;
+  text-align: center;
 }
 
 #header {
@@ -42,3 +43,24 @@ p {
   text-align: center;
   padding: 10px;
 }
+
+#records {
+  position: relative;
+    left: 10%;
+    top: 45%;
+  float: left;
+}
+
+#start {
+  position: relative;
+   top: 45%;
+   left: -2%;
+}
+
+#login {
+  position: relative;
+   top: 45%;
+   left: 22%;
+}
+
+
