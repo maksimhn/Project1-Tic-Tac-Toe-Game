@@ -21,6 +21,7 @@ div {
 #footer {
   margin-top: 20px;
   height: 100px;
+  text-align: center;
 }
 
 #activeframe {
@@ -29,4 +30,15 @@ div {
   height: 340px;
   position: relative;
     top: 30px;
+}
+
+h4 {
+  position: relative;
+    top: 10px;
+  margin: 5px;
+}
+
+p {
+  text-align: center;
+  padding: 10px;
 }
