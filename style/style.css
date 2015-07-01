@@ -22,3 +22,11 @@ div {
   margin-top: 20px;
   height: 100px;
 }
+
+#activeframe {
+  background-color: teal;
+  width: 36%;
+  height: 340px;
+  position: relative;
+    top: 30px;
+}
