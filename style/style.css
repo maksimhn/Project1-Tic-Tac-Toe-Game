@@ -44,6 +44,11 @@ p {
   padding: 10px;
 }
 
+/*button {
+  display: inline-block;
+  margin: 0 auto;
+}*/
+
 #records {
   position: relative;
     left: 10%;
@@ -62,5 +67,3 @@ p {
    top: 45%;
    left: 22%;
 }
-
-
