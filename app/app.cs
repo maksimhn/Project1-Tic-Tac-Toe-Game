@@ -1,49 +1,59 @@
-function cellValue(key) {
-  switch(key) {
-    case 'a': return null;
-    case 'b': return null;
-    case 'c': return null;
-    case 'd': return null;
-    case 'e': return null;
-    case 'f': return null;
-    case 'g': return null;
-    case 'h': return null;
-    case 'i': return null;
-    default : return null;
-  }
-}
+var cleanBoard = {
+  a: null,
+  b: null,
+  c: null,
+  d: null,
+  e: null,
+  f: null,
+  g: null,
+  h: null,
+  i: null
+};
+
+var currentBoard = {
+  a: null,
+  b: null,
+  c: null,
+  d: null,
+  e: null,
+  f: null,
+  g: null,
+  h: null,
+  i: null
+};
 
 
-function getWinner() {
-  if (isWinnerX()) {
+var getWinner = function () {
+  if (winnerIs('x')) {
     return 'x';
   }
-  if (isWinnerO()) {
+  if (winnerIs('o')) {
     return 'o';
   }
   return null;
-}
+};
 
-function isWinnerX() {
-  return winsRowX() || winsColumnX() || winsDiagonalX();
-}
+var winnerIs = function (player) {
+  return winsRow(player) || winsColumn(player) || winsDiagonal(player);
+};
 
-function winsRowX() {
-  return allThreeX(cells('a'), cells('b'), cells('c')) ||
-         allThreeX(cells('d'), cells('e'), cells('f')) ||
-         allThreeX(cells('g'), cells('h'), cells('i'));
-}
+var winsRow = function (player) {
+  return allThree(player, cells('a'), cells('b'), cells('c')) ||
+         allThree(player, cells('d'), cells('e'), cells('f')) ||
+         allThree(player, cells('g'), cells('h'), cells('i'));
+};
 
-function winsColumnX() {
-  return allThreeX(cells('a'), cells('d'), cells('g')) ||
-         allThreeX(cells('b'), cells('e'), cells('h')) ||
-         allThreeX(cells('c'), cells('f'), cells('i'));
-}
+var winsColumn = function (player) {
+  return allThree(player, cells('a'), cells('d'), cells('g')) ||
+         allThree(player, cells('b'), cells('e'), cells('h')) ||
+         allThree(player, cells('c'), cells('f'), cells('i'));
+};
 
-function winsDiagonalX() {
-  return allThreeX(cells('a'), cells('e'), cells('i')) ||
-         allThreeX(cells('c'), cells('e'), cells('g'));
-}
+var winsDiagonal = function (player) {
+  return allThree(player, cells('a'), cells('e'), cells('i')) ||
+         allThree(player, cells('c'), cells('e'), cells('g'));
+};
 
-function allThreeX(cellOne, cellTwo, cellThree) {
-}
+var allThree = function (player, cellOne, cellTwo, cellThree) {
+  return (cellOne === player) && (cellTwo === player) && (cellThree === player);
+};
