@@ -26,11 +26,15 @@ div {
 }
 
 #activeframe {
-  background-color: teal;
-  width: 36%;
-  height: 340px;
+  background-color: black;
+  width: 342px;
+  height: 342px;
+  border-style: solid;
+  border-color: black;
+  border-width: 6px;
+  border-radius: 12px;
   position: relative;
-    top: 30px;
+    top: 23px;
 }
 
 h4 {
@@ -66,4 +70,55 @@ p {
   position: relative;
    top: 45%;
    left: 22%;
+}
+
+.boardcells {
+  float: left;
+  width: 110px;
+  height: 110px;
+  position: relative;
+  border-color: black;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 3px;
+}
+
+#cellA {
+  border-top: 0px;
+  border-left: 0px;
+}
+
+#cellB {
+  border-top: 0px;
+}
+
+#cellC {
+  border-top: 0px;
+  border-right: 0px;
+}
+
+#cellD {
+  border-left: 0px;
+}
+
+#cellE {
+
+}
+
+#cellF {
+  border-right: 0px;
+}
+
+#cellG {
+  border-left: 0px;
+  border-bottom: 0px;
+}
+
+#cellH {
+  border-bottom: 0px;
+}
+
+#cellI {
+  border-bottom: 0px;
+  border-right: 0px;
 }
