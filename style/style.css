@@ -7,6 +7,7 @@ div {
   margin: auto;
   background-color: gray;
   text-align: center;
+  border-radius: 12px;
 }
 
 #header {
@@ -121,4 +122,8 @@ p {
 #cellI {
   border-bottom: 0px;
   border-right: 0px;
+}
+
+.boardcells:hover {
+  background-color: #9EA3A8;
 }
