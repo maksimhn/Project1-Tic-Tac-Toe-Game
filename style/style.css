@@ -5,7 +5,7 @@ body {
 div {
   width: 60%;
   margin: auto;
-  background-color: gray;
+  background-color: #9EA3A8;
   text-align: center;
   border-radius: 12px;
 }
@@ -18,6 +18,7 @@ div {
 #mainframe {
   margin-top: 20px;
   height: 400px;
+  overflow-y: hidden;
 }
 
 #footer {
@@ -26,7 +27,9 @@ div {
   text-align: center;
 }
 
-#activeframe {
+.activeframe {
+  -webkit-transition: top 1s ease;
+  transition: top 1s ease;
   background-color: black;
   width: 342px;
   height: 342px;
@@ -36,6 +39,39 @@ div {
   border-radius: 12px;
   position: relative;
     top: 23px;
+}
+
+.playersnames {
+  transition-property: all;
+  transition-duration: 1s;
+  opacity: 0;
+  position: relative;
+    top: 20px;
+    left: -65px;
+  height: 0px;
+  width: 0px;
+  visibility:hidden;
+}
+
+#playerTwo {
+  position: relative;
+    top: 10px;
+}
+
+#play {
+  position: relative;
+    left: 40px;
+    top: 20px;
+}
+
+.playersnames-shown {
+  padding: 20px;
+  opacity: 1;
+  visibility:visible;
+}
+
+.activeframe-down {
+  top: 103px;
 }
 
 h4 {
@@ -48,11 +84,6 @@ p {
   text-align: center;
   padding: 10px;
 }
-
-/*button {
-  display: inline-block;
-  margin: 0 auto;
-}*/
 
 #records {
   position: relative;
@@ -125,5 +156,5 @@ p {
 }
 
 .boardcells:hover {
-  background-color: #9EA3A8;
+  background-color: #66CCFF;
 }

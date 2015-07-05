@@ -12,7 +12,12 @@
     <button id="login" type="button">Login</button>
   </div>
   <div id="mainframe">
-    <div id="activeframe">
+    <div class="playersnames">
+      <input type="text" name="playerOne" value="" placeholder="Player One" class="nameInputs" id="playerOne"><br>
+      <input type="text" name="playerTwo" value="" placeholder="Player Two" class="nameInputs" id="playerTwo">
+      <button id="play" type="button">Play!</button>
+    </div>
+    <div class="activeframe">
 
       <div id="cellA" class="boardcells">
         A
@@ -52,5 +57,6 @@
     </p>
   </div>
   <script src="https://code.jquery.com/jquery-2.1.4.js" charset="utf-8"></script>
+  <script src="app/app.js" charset="utf-8"></script>
 </body>
 </html>
