@@ -2,7 +2,7 @@
 //jQuery.ajax
 $(function(){
 var gameWatcher;
-  'use strict';
+'use strict';
 //  var sa = '//localhost:3000';
 //  var sa = 'https://young-citadel-2431.herokuapp.com';
 // var sa = 'http://10.13.108.54:3000';
@@ -90,6 +90,8 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
 
   $('#register').on('click', function(e) {
+    event.preventDefault();
+    console.log('clicked' + this.id);
     $.ajax(sa + '/register', {
       contentType: 'application/json',
       processData: false,
@@ -107,9 +109,12 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('registration failed');
     });
+    $('#email').val('');
+    $('#password').val('');
   });
 
   $('#signin').on('click', function(e) {
+    event.preventDefault();
     $.ajax(sa + '/login', {
       contentType: 'application/json',
       processData: false,
@@ -122,30 +127,45 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
       dataType: 'json',
       method: 'POST'
     }).done(function(data, textStatus, jqxhr){
-      $('#result').val(data.token);
+      $('#result').val(data.token); // to DELETE LATER
+      playerToken = data.token;
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('login failed');
+    });
+    $('#email').val('');
+    $('#password').val('');
+  });
+
+  $('logout').on('click', function(e) {
+     location.reload();
+  });
+
+  $('#start').on('click', function(e) {
+    event.preventDefault();
+    $.ajax(sa + '/games', {
+      contentType: 'application/json',
+      processData: false,
+      data: JSON.stringify({}),
+      dataType: 'json',
+      method: 'POST',
+      headers: {
+        Authorization: 'Token token=' + playerToken
+      }
+    }).done(function(data, textStatus, jqxhr){
+      $('#result').val(JSON.stringify(data));
+    }).fail(function(jqxhr, textStatus, errorThrown){
+      $('#result').val('create failed');
     });
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
   $('#list').on('click', function(e) {
+    event.preventDefault();
     $.ajax(sa + '/games', {
       dataType: 'json',
       method: 'GET',
       headers: {
-        Authorization: 'Token token=' + $('#token').val()
+        Authorization: 'Token token=' + playerToken
       }
     }).done(function(data, textStatus, jqxhr){
       $('#result').val(JSON.stringify(data));
@@ -154,22 +174,25 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
     });
   });
 
-  $('#create').on('click', function(e) {
-    $.ajax(sa + '/games', {
-      contentType: 'application/json',
-      processData: false,
-      data: JSON.stringify({}),
-      dataType: 'json',
-      method: 'POST',
-      headers: {
-        Authorization: 'Token token=' + $('#token').val()
-      }
-    }).done(function(data, textStatus, jqxhr){
-      $('#result').val(JSON.stringify(data));
-    }).fail(function(jqxhr, textStatus, errorThrown){
-      $('#result').val('create failed');
-    });
-  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   $('#show').on('click', function(e) {
