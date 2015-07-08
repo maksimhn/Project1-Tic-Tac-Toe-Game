@@ -91,7 +91,7 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
   $('#register').on('click', function(e) {
     event.preventDefault();
-    console.log('clicked' + this.id);
+    this.blur();
     $.ajax(sa + '/register', {
       contentType: 'application/json',
       processData: false,
@@ -115,6 +115,7 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
   $('#signin').on('click', function(e) {
     event.preventDefault();
+    this.blur();
     $.ajax(sa + '/login', {
       contentType: 'application/json',
       processData: false,
@@ -142,6 +143,7 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
   $('#start').on('click', function(e) {
     event.preventDefault();
+    this.blur();
     $.ajax(sa + '/games', {
       contentType: 'application/json',
       processData: false,
@@ -161,6 +163,7 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
   $('#list').on('click', function(e) {
     event.preventDefault();
+    this.blur();
     $.ajax(sa + '/games', {
       dataType: 'json',
       method: 'GET',
@@ -168,65 +171,52 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
         Authorization: 'Token token=' + playerToken
       }
     }).done(function(data, textStatus, jqxhr){
-      $('#result').val(JSON.stringify(data));
+      $('#result').val(JSON.stringify(data)); // Make a cool list of games
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('list failed');
     });
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   $('#show').on('click', function(e) {
-    $.ajax(sa + '/games/' + $('#id').val(), {
+    event.preventDefault();
+    this.blur();
+    $.ajax(sa + '/games/' + $('#gameid').val(), {
       dataType: 'json',
       method: 'GET',
       headers: {
-        Authorization: 'Token token=' + $('#token').val()
+        Authorization: 'Token token=' + playerToken
       }
     }).done(function(data, textStatus, jqxhr){
-      $('#result').val(JSON.stringify(data));
+      $('#result').val(JSON.stringify(data)); // Make it shown on the board
+      boardRender(data.game.cells);
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('show failed');
     });
   });
 
+
   $('#join').on('click', function(e) {
-    $.ajax(sa + '/games/' + $('#id').val(), {
+    event.preventDefault();
+    this.blur();
+    $.ajax(sa + '/games/' + $('#gameid').val(), {
       contentType: 'application/json',
       processData: false,
       data: JSON.stringify({}),
       dataType: 'json',
       method: 'PATCH',
       headers: {
-        Authorization: 'Token token=' + $('#token').val()
+        Authorization: 'Token token=' + playerToken
       }
     }).done(function(data, textStatus, jqxhr){
       $('#result').val(JSON.stringify(data));
+      boardRender(data.game.cells);
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('join failed');
     });
   });
 
   $('#move').on('click', function(e) {
+    this.blur();
     $.ajax(sa + '/games/' + $('#id').val(), {
       contentType: 'application/json',
       processData: false,
@@ -249,6 +239,20 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
       $('#result').val('move failed');
     });
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   $('#watch').on('click', function() {
