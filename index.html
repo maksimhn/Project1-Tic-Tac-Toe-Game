@@ -3,60 +3,74 @@
 <head>
   <link rel="stylesheet" href="style/style.css">
   <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <title>Let's play Tic-tac-toe!</title>
 </head>
 <body>
-  <div id="header">
-    <button id="records" type="button">View Records</button>
-    <button id="start" type="button">Start New Game</button>
-    <button id="login" type="button">Login</button>
-  </div>
-  <div id="mainframe">
+  <div class="container bg-white">
+    <h4 class="text-center">To start or view games, please sign in</h4>
+    <p></p>
+    <form class="form-inline text-center">
+      <div class="form-group">
+        <label class="sr-only" for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button id="signin" type="submit" class="btn btn-default">Sign in</button>
+      <text>or</text>
+      <button id="register" type="submit" class="btn btn-default">Register</button>
+    </form>
+
+  <div id="mainframe" class="lowerdivs">
     <div class="playersnames">
       <input type="text" name="playerOne" value="" placeholder="Player One" class="nameInputs" id="playerOne"><br>
       <input type="text" name="playerTwo" value="" placeholder="Player Two" class="nameInputs" id="playerTwo">
       <button id="play" type="button">Play!</button>
     </div>
-    <div class="activeframe">
+    <div class="lowerdivs activeframe">
 
-      <div id="cellA" class="boardcells">
+      <div id="cell0" class="boardcells">
         A
       </div>
-      <div id="cellB" class="boardcells">
+      <div id="cell1" class="boardcells">
         B
       </div>
-      <div id="cellC" class="boardcells">
+      <div id="cell2" class="boardcells">
         C
       </div>
-      <div id="cellD" class="boardcells">
+      <div id="cell3" class="boardcells">
         D
       </div>
-      <div id="cellE" class="boardcells">
+      <div id="cell4" class="boardcells">
         E
       </div>
-      <div id="cellF" class="boardcells">
+      <div id="cell5" class="boardcells">
         F
       </div>
-      <div id="cellG" class="boardcells">
+      <div id="cell6" class="boardcells">
         G
       </div>
-      <div id="cellH" class="boardcells">
+      <div id="cell7" class="boardcells">
         H
       </div>
-      <div id="cellI" class="boardcells">
+      <div id="cell8" class="boardcells">
         I
       </div>
     </div>
   </div>
-  <div id="footer">
-    <h4>
-      Basic Rules
-    </h4>
-    <p>
+  <div id="footer" class="lowerdivs">
+    <h4 class="text-center">Basic rules</h4>
+    <p></p>
+    <text>
       Tic Tac Toe is a two-player game where the first player to connect a line of pieces from one side or corner of the board to the other wins.
-    </p>
+    </text>
   </div>
+</div>
   <script src="https://code.jquery.com/jquery-2.1.4.js" charset="utf-8"></script>
   <script src="app/app.js" charset="utf-8"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

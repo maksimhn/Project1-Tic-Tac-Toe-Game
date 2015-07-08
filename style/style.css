@@ -1,8 +1,8 @@
-body {
+/*body {
   background-image: url("images/background.jpg");
-}
+}*/
 
-div {
+.lowerdivs {
   width: 60%;
   margin: auto;
   background-color: #9EA3A8;
@@ -21,16 +21,17 @@ div {
   overflow-y: hidden;
 }
 
-#footer {
+/*#footer {
   margin-top: 20px;
   height: 100px;
   text-align: center;
-}
+}*/
+
 
 .activeframe {
   -webkit-transition: top 1s ease;
   transition: top 1s ease;
-  background-color: black;
+  background-color: #9EA3A8;
   width: 342px;
   height: 342px;
   border-style: solid;
@@ -115,42 +116,42 @@ p {
   border-width: 3px;
 }
 
-#cellA {
+#cell0 {
   border-top: 0px;
   border-left: 0px;
 }
 
-#cellB {
+#cell1 {
   border-top: 0px;
 }
 
-#cellC {
+#cell2 {
   border-top: 0px;
   border-right: 0px;
 }
 
-#cellD {
+#cell3 {
   border-left: 0px;
 }
 
-#cellE {
+#cell4 {
 
 }
 
-#cellF {
+#cell5 {
   border-right: 0px;
 }
 
-#cellG {
+#cell6 {
   border-left: 0px;
   border-bottom: 0px;
 }
 
-#cellH {
+#cell7 {
   border-bottom: 0px;
 }
 
-#cellI {
+#cell8 {
   border-bottom: 0px;
   border-right: 0px;
 }
