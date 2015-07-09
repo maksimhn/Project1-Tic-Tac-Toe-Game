@@ -7,9 +7,9 @@ var sa = 'https://young-citadel-2431.herokuapp.com';
 var player, move, playerToken;
 var isGameOver = false;
 
-//var cleanBoard = ["","","","","","","","",""];
 var currentBoard = ["","","","","","","","",""];
 
+// determines a winner based on current state of the board, changes state of the game tracker's value and prevents future clicks on the board
 var getWinner = function () {
   if (winnerIs('x')) {
     isGameOver = true;
@@ -25,7 +25,6 @@ var getWinner = function () {
     isGameOver = true;
     return alert('It\'s a draw!');
   }
-  //return null;
 };
 
 // updates the local version of the board with the one sent by server
@@ -40,9 +39,16 @@ var boardRender = function (board) {
 
 // prevents future clicks and hover effects
 var boardBlocker = function(element) {
-  $(element).unbind('click');
+  $(element).unbind('click', clickHandler);
   $(element).removeClass('hovereffect');
 }
+
+var boardUnblocker = function(board) {
+  for (var i = 0; i < board.length; i++) {
+    $('#cell' + i).bind('click', clickHandler);
+    $('#cell' + i).addClass('hovereffect');
+  }
+};
 
 // determines whose move is next based on the state of the board
 var whoseMoveIsIt = function (board) {
@@ -85,12 +91,15 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 };
 
 // updates currentBoard array and rerenders the board upon a new move
-$('.boardcells').on('click', function(e) {
+var clickHandler = function(e) {
   var cellIndex = +$(this).attr('id').charAt(4);
   currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
   getWinner();
-});
+};
+
+// updates currentBoard array and rerenders the board upon a new move
+$('.boardcells').on('click', clickHandler);
 
 
 
@@ -164,6 +173,9 @@ $('.boardcells').on('click', function(e) {
   });
 
   $('#start').on('click', function(e) {
+    currentBoard = ["","","","","","","","",""];
+    boardRender(currentBoard);
+    boardUnblocker(currentBoard);
     event.preventDefault();
     this.blur();
     $.ajax(sa + '/games', {
