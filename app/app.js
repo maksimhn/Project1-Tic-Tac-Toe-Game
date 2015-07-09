@@ -15,11 +15,13 @@ var getWinner = function () {
   if (winnerIs('x')) {
     isGameOver = true;
     xScore++;
+    scoreRender(xScore, oScore);
     boardBlocker('.boardcells');
     return alert('Congrats, Player X! You are the winner');
   } else if (winnerIs('o')) {
     isGameOver = true;
     oScore++;
+    scoreRender(xScore, oScore);
     boardBlocker('.boardcells');
     return alert('Congrats, Player O! You are the winner');
   }
@@ -38,6 +40,13 @@ var boardRender = function (board) {
       boardBlocker('#cell' + i);
     }
   }
+};
+
+var scoreRender = function(scoreX, scoreO) {
+  $('#scorex').html('<h5>Player X:</h5>');
+  $('#scoreo').html('<h5>Player O:</h5>');
+  $('#scorex').append('<text>' + xScore + '</score>');
+  $('#scoreo').append('<text>' + oScore + '</score>');
 };
 
 // prevents future clicks and hover effects
@@ -98,7 +107,7 @@ var clickHandler = function(e) {
   var cellIndex = +$(this).attr('id').charAt(4);
   currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
-  getWinner();
+  return getWinner();
 };
 
 // updates currentBoard array and rerenders the board upon a new move

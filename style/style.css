@@ -29,6 +29,8 @@
 
 
 .activeframe {
+  margin-top: 4%;
+  /*float: left;*/
   -webkit-transition: top 1s ease;
   transition: top 1s ease;
   background-color: #9EA3A8;
@@ -38,20 +40,25 @@
   border-color: black;
   border-width: 6px;
   border-radius: 12px;
-  position: relative;
-    top: 23px;
+  /*position: relative;
+    top: 23px;*/
 }
 
-.playersnames {
-  transition-property: all;
-  transition-duration: 1s;
-  opacity: 0;
+#scorex {
+  float: left;
+  text-align: center;
   position: relative;
-    top: 20px;
-    left: -65px;
-  height: 0px;
-  width: 0px;
-  visibility:hidden;
+    left: 5%;
+    top: 5%;
+}
+
+
+#scoreo {
+  float: right;
+  text-align: center;
+  position: relative;
+    right: 5%;
+    bottom: 350px;
 }
 
 #playerTwo {
@@ -114,6 +121,10 @@ p {
   border-style: solid;
   border-radius: 12px;
   border-width: 3px;
+  font-size: 400%;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
 }
 
 #cell0 {
