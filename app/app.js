@@ -3,9 +3,6 @@
 //$(function(){ TURN ON AFTERWARDS
 var gameWatcher;
 'use strict';
-//  var sa = '//localhost:3000';
-//  var sa = 'https://young-citadel-2431.herokuapp.com';
-// var sa = 'http://10.13.108.54:3000';
 var sa = 'https://young-citadel-2431.herokuapp.com';
 var player, move, playerToken;
 
@@ -44,10 +41,10 @@ var whoseMoveIsIt = function (board) {
   }
   if (turnCount === 9) {
     return 'full';
-  } else if ((turnCount === 0) || (turnCount % 2 !== 0)) {
-    return 'x';
-  } else {
+  } else if (turnCount % 2 !== 0) {
     return 'o';
+  } else {
+    return 'x';
   }
 };
 
@@ -76,8 +73,12 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
 // updates currentBoard array and rerenders the board upon a new move
 $('.boardcells').on('click', function(e) {
-  currentBoard[$(this.id.charAt(4))] = player;
+  var cellIndex = Number($(this).attr('id').charAt(4));
+  currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
+  console.log('#' + this.id);
+  $('#' + this.id).unbind('click');
+  $('#' + this.id).removeClass('hovereffect');
 });
 
 

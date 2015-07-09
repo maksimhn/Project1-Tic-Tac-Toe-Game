@@ -156,6 +156,6 @@ p {
   border-right: 0px;
 }
 
-.boardcells:hover {
+.hovereffect:hover {
   background-color: #66CCFF;
 }
