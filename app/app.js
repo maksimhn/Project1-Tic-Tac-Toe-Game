@@ -28,6 +28,10 @@ var getWinner = function () {
 var boardRender = function (board) {
   for (var i = 0; i < board.length; i++) {
     $('#cell' + i).text(board[i]);
+    if (board[i]) {
+      $('#cell' + i).unbind('click');
+      $('#cell' + i).removeClass('hovereffect');
+    }
   }
 };
 
@@ -73,12 +77,9 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 
 // updates currentBoard array and rerenders the board upon a new move
 $('.boardcells').on('click', function(e) {
-  var cellIndex = Number($(this).attr('id').charAt(4));
+  var cellIndex = +$(this).attr('id').charAt(4);
   currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
-  console.log('#' + this.id);
-  $('#' + this.id).unbind('click');
-  $('#' + this.id).removeClass('hovereffect');
 });
 
 
@@ -156,6 +157,7 @@ var game = function() {
 
   $('logout').on('click', function(e) {
      location.reload();
+     playerToken = '';
   });
 
   $('#start').on('click', function(e) {
