@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style/style.css">
+
   <link rel="shortcut icon" href="images/favicon.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/style.css">
   <title>Let's play Tic-tac-toe!</title>
 </head>
 <body>
@@ -20,8 +21,7 @@
       <button id="signin" type="submit" class="btn btn-default">Sign in</button>
       <text>or</text>
       <button id="register" type="submit" class="btn btn-default">Register</button>
-      <text>or</text>
-      <button id="logout" type="submit" class="btn btn-default">Logout</button>
+      <button id="logout" type="submit" class="btn btn-default hider">Logout</button>
       <p></p>
       <div class="form-group">
         <button id="start" type="submit" class="btn btn-default">Start new game</button>
@@ -33,8 +33,8 @@
         <!-- <p></p>
         <button id="list" type="submit" class="btn btn-default">List of played games</button> -->
         <p></p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="listnew">
-          List of the games you played
+        <button class="btn btn-primary hider" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="listnew">
+          List of the games you have played
         </button>
         <p></p>
         <div class="collapse" id="collapseExample">
@@ -43,13 +43,13 @@
           </div>
         </div>
 
-        <p></p>
-        <form role="form">
+        <!-- <p></p> -->
+        <!-- <form role="form">
           <div class="form-group">
             <label for="result">Result:</label>
             <textarea class="form-control" rows="5" id="result"></textarea>
           </div>
-        </form>
+        </form> -->
 
       </div>
     </form>

@@ -4,7 +4,7 @@
 var gameWatcher;
 'use strict';
 var sa = 'https://young-citadel-2431.herokuapp.com';
-var player, move, playerToken;
+var player, move, lastMove, lastPlayer, playerToken;
 var isGameOver = false;
 var xScore = 0;
 var oScore = 0;
@@ -42,11 +42,12 @@ var boardRender = function (board) {
   }
 };
 
+// updates players' scores
 var scoreRender = function(scoreX, scoreO) {
   $('#scorex').html('<h5>Player X:</h5>');
   $('#scoreo').html('<h5>Player O:</h5>');
-  $('#scorex').append('<text>' + xScore + '</score>');
-  $('#scoreo').append('<text>' + oScore + '</score>');
+  $('#scorex').append('<text>' + xScore + '</text>');
+  $('#scoreo').append('<text>' + oScore + '</text>');
 };
 
 // prevents future clicks and hover effects
@@ -105,18 +106,15 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 // updates currentBoard array and rerenders the board upon a new move
 var clickHandler = function(e) {
   var cellIndex = +$(this).attr('id').charAt(4);
+  lastMove = cellIndex;
   currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
+  lastPlayer = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
+  moveHandler();
   return getWinner();
 };
 
-// updates currentBoard array and rerenders the board upon a new move
-$('.boardcells').on('click', clickHandler);
 
-$('#collapseExample').on('show.bs.collapse', function(e) {
-    $('#listarea').html('');
-    $('#listarea').append(listMaker(datafortest));
-});
 
 var datafortest = {
   "games": [
@@ -149,6 +147,7 @@ var datafortest = {
   ]
 };
 
+// adds a list of games played to the dropdown field below the button
 var listMaker = function(data) {
   var finalList = '<ol>';
   var gamesArray = data['games'];
@@ -157,6 +156,16 @@ var listMaker = function(data) {
     finalList += '<li><text>Game id: ' + gamesArray[i]['id'] + ', is over: ' + gamesArray[i]['over'] + ', ' + gamesArray[i]['player_x']['email'] + ' played for X, ' + gamesArray[i]['player_o']['email'] + ' played for O' + '</text></li>';
   }
   return finalList + '</ol>';
+};
+
+var toggleElements = function () {
+  if (!playerToken) {
+    $('#logout').addClass('.hider');
+    $('#listnew').addClass('.hider');
+  } else {
+    $('#logout').removeClass('.hider');
+    $('#listnew').removeClass('.hider');
+  }
 };
 
 // $(function() {
@@ -173,6 +182,13 @@ var listMaker = function(data) {
 //   });
 // });
 
+  // updates currentBoard array and rerenders the board upon a new move
+  $('.boardcells').on('click', clickHandler);
+
+  $('#collapseExample').on('show.bs.collapse', function(e) {
+      $('#listarea').html('');
+      $('#listarea').append(listMaker(datafortest));
+  });
 
 
   $('#register').on('click', function(e) {
@@ -216,6 +232,7 @@ var listMaker = function(data) {
     }).done(function(data, textStatus, jqxhr){
       $('#result').val(data.token); // to DELETE LATER
       playerToken = data.token;
+      toggleElements();
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('login failed');
     });
@@ -226,6 +243,7 @@ var listMaker = function(data) {
   $('logout').on('click', function(e) {
      location.reload();
      playerToken = '';
+     toggleElements();
   });
 
   $('#start').on('click', function(e) {
@@ -278,6 +296,8 @@ var listMaker = function(data) {
         Authorization: 'Token token=' + playerToken
       }
     }).done(function(data, textStatus, jqxhr){
+      currentBoard = date['game']['cells'];
+      boardRender(currentBoard);
       $('#result').val(JSON.stringify(data)); // Make it shown on the board
       boardRender(data.game.cells);
     }).fail(function(jqxhr, textStatus, errorThrown){
@@ -306,18 +326,19 @@ var listMaker = function(data) {
     });
   });
 
-  $('#move').on('click', function(e) {
-    this.blur();
+  // updates a game with a move made
+  var moveHandler = function (e) {
     $.ajax(sa + '/games/' + $('#id').val(), {
       contentType: 'application/json',
       processData: false,
       data: JSON.stringify({
         game: {
           cell: {
-            index: +$('#index').val(),
-            value: $('#value').val()
+            index: lastMove,
+            value: lastPlayer
           }
-        }
+        },
+        over: isGameOver
       }),
       dataType: 'json',
       method: 'PATCH',
@@ -329,7 +350,9 @@ var listMaker = function(data) {
     }).fail(function(jqxhr, textStatus, errorThrown){
       $('#result').val('move failed');
     });
-  });
+  };
+
+  $('#move').on('click', moveHandler);
 
 
   $('#watch').on('click', function() {
