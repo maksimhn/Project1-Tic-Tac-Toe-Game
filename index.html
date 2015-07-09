@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container bg-white">
-    <h4 class="text-center">To start playing over Interwebs or retrieve games, please sign in</h4>
+    <h4 class="text-center">To start playing over Interwebs and store/retrieve games, please sign in</h4>
     <p></p>
     <form class="form-inline text-center">
       <div class="form-group">
@@ -25,13 +25,24 @@
       <p></p>
       <div class="form-group">
         <button id="start" type="submit" class="btn btn-default">Start new game</button>
-        <text>or</text>
+        <text>or join the existing one:</text>
         <input type="gameid" class="form-control" id="gameid" placeholder="Game ID">
         <button id="join" type="submit" class="btn btn-default">Join</button>
         <text>or</text>
         <button id="show" type="submit" class="btn btn-default">Show</button>
+        <!-- <p></p>
+        <button id="list" type="submit" class="btn btn-default">List of played games</button> -->
         <p></p>
-        <button id="list" type="submit" class="btn btn-default">List of played games</button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="listnew">
+          List of the games you played
+        </button>
+        <p></p>
+        <div class="collapse" id="collapseExample">
+          <div class="well" id="listarea">
+
+          </div>
+        </div>
+
         <p></p>
         <form role="form">
           <div class="form-group">

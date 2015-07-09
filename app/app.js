@@ -6,17 +6,20 @@ var gameWatcher;
 var sa = 'https://young-citadel-2431.herokuapp.com';
 var player, move, playerToken;
 var isGameOver = false;
-
+var xScore = 0;
+var oScore = 0;
 var currentBoard = ["","","","","","","","",""];
 
 // determines a winner based on current state of the board, changes state of the game tracker's value and prevents future clicks on the board
 var getWinner = function () {
   if (winnerIs('x')) {
     isGameOver = true;
+    xScore++;
     boardBlocker('.boardcells');
     return alert('Congrats, Player X! You are the winner');
   } else if (winnerIs('o')) {
     isGameOver = true;
+    oScore++;
     boardBlocker('.boardcells');
     return alert('Congrats, Player O! You are the winner');
   }
@@ -41,7 +44,7 @@ var boardRender = function (board) {
 var boardBlocker = function(element) {
   $(element).unbind('click', clickHandler);
   $(element).removeClass('hovereffect');
-}
+};
 
 var boardUnblocker = function(board) {
   for (var i = 0; i < board.length; i++) {
@@ -101,7 +104,51 @@ var clickHandler = function(e) {
 // updates currentBoard array and rerenders the board upon a new move
 $('.boardcells').on('click', clickHandler);
 
+$('#collapseExample').on('show.bs.collapse', function(e) {
+    $('#listarea').html('');
+    $('#listarea').append(listMaker(datafortest));
+});
 
+var datafortest = {
+  "games": [
+    {
+      "id": 1,
+      "cells": ["o","x","o","x","o","x","o","x","o"],
+      "over": true,
+      "player_x": {
+        "id": 1,
+        "email": "and@and.com"
+      },
+      "player_o": {
+        "id": 3,
+        "email": "dna@dna.com"
+      }
+    },
+    {
+      "id": 2,
+      "cells": ["","","","","","","","",""],
+      "over": false,
+      "player_x": {
+        "id": 3,
+        "email": "dna@dna.com"
+      },
+      "player_o": {
+        "id": 1,
+        "email": "and@and.com"
+      }
+    }
+  ]
+};
+
+var listMaker = function(data) {
+  var finalList = '<ol>';
+  var gamesArray = data['games'];
+  //$('#listarea').html('<h4>piu</h4>');
+  for (var i = 0; i < gamesArray.length; i++) {
+    finalList += '<li><text>Game id: ' + gamesArray[i]['id'] + ', is over: ' + gamesArray[i]['over'] + ', ' + gamesArray[i]['player_x']['email'] + ' played for X, ' + gamesArray[i]['player_o']['email'] + ' played for O' + '</text></li>';
+  }
+  return finalList + '</ol>';
+};
 
 // $(function() {
 //   $('#start').click(function() {
@@ -193,6 +240,7 @@ $('.boardcells').on('click', clickHandler);
       $('#result').val('create failed');
     });
   });
+
 
 
   $('#list').on('click', function(e) {
