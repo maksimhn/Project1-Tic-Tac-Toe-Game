@@ -1,14 +1,14 @@
 
 //jQuery.ajax
-$(function(){
+//$(function(){ TURN ON AFTERWARDS
 var gameWatcher;
 'use strict';
 //  var sa = '//localhost:3000';
 //  var sa = 'https://young-citadel-2431.herokuapp.com';
 // var sa = 'http://10.13.108.54:3000';
 var sa = 'https://young-citadel-2431.herokuapp.com';
-var player, move, turnCount, playerToken;
-var currentTurn = '';
+var player, move, playerToken;
+
 //var cleanBoard = ["","","","","","","","",""];
 var currentBoard = ["","","","","","","","",""];
 
@@ -34,14 +34,20 @@ var boardRender = function (board) {
   }
 };
 
-// updates the current board state after player's move
-var boardReader = function (cellID, player) {
-  currentBoard[$(this).val().charAt(4)] = player;
-};
-
-var game = function() {
-  while (!getWinner) {
-
+// determines whose move is next based on the state of the board
+var whoseMoveIsIt = function (board) {
+  var turnCount = 0;
+  for (var i = 0; i < board.length; i++) {
+    if (board[i]) {
+      turnCount++;
+    }
+  }
+  if (turnCount === 9) {
+    return 'full';
+  } else if ((turnCount === 0) || (turnCount % 2 !== 0)) {
+    return 'x';
+  } else {
+    return 'o';
   }
 };
 
@@ -68,8 +74,18 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
   return (cellOne === player) && (cellTwo === player) && (cellThree === player);
 };
 
+// updates currentBoard array and rerenders the board upon a new move
+$('.boardcells').on('click', function(e) {
+  currentBoard[$(this.id.charAt(4))] = player;
+  boardRender(currentBoard);
+});
 
 
+var game = function() {
+  while (!getWinner) {
+
+  }
+};
 
 
 
@@ -241,20 +257,6 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   $('#watch').on('click', function() {
     gameWatcher = resourceWatcher(sa + '/games/' + $('#id').val() + '/watch', {
         Authorization: 'Token token=' + $('#token').val()
@@ -276,4 +278,4 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
     });
   });
 
-});
+//}); TURN ON AFTERWARDS
