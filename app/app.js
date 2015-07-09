@@ -5,23 +5,27 @@ var gameWatcher;
 'use strict';
 var sa = 'https://young-citadel-2431.herokuapp.com';
 var player, move, playerToken;
+var isGameOver = false;
 
 //var cleanBoard = ["","","","","","","","",""];
 var currentBoard = ["","","","","","","","",""];
 
 var getWinner = function () {
-  console.log(currentBoard);
   if (winnerIs('x')) {
-    return 'x';
+    isGameOver = true;
+    boardBlocker('.boardcells');
+    return alert('Congrats, Player X! You are the winner');
   } else if (winnerIs('o')) {
-    return 'o';
+    isGameOver = true;
+    boardBlocker('.boardcells');
+    return alert('Congrats, Player O! You are the winner');
   }
-  for (var i = 0; i < currentBoard.length; i++) {
-    if (currentBoard[i] !== '') {
-      return 'draw'
-    }
+  if (whoseMoveIsIt(currentBoard) === 'full') {
+    boardBlocker('.boardcells');
+    isGameOver = true;
+    return alert('It\'s a draw!');
   }
-  return null;
+  //return null;
 };
 
 // updates the local version of the board with the one sent by server
@@ -29,11 +33,16 @@ var boardRender = function (board) {
   for (var i = 0; i < board.length; i++) {
     $('#cell' + i).text(board[i]);
     if (board[i]) {
-      $('#cell' + i).unbind('click');
-      $('#cell' + i).removeClass('hovereffect');
+      boardBlocker('#cell' + i);
     }
   }
 };
+
+// prevents future clicks and hover effects
+var boardBlocker = function(element) {
+  $(element).unbind('click');
+  $(element).removeClass('hovereffect');
+}
 
 // determines whose move is next based on the state of the board
 var whoseMoveIsIt = function (board) {
@@ -80,14 +89,8 @@ $('.boardcells').on('click', function(e) {
   var cellIndex = +$(this).attr('id').charAt(4);
   currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
+  getWinner();
 });
-
-
-var game = function() {
-  while (!getWinner) {
-
-  }
-};
 
 
 
