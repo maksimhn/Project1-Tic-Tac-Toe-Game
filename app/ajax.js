@@ -2,7 +2,7 @@
 
 var playOnline = function() {
   gameWatcher = resourceWatcher(sa + '/games/' + $('#gameid').val() + '/watch', {
-      Authorization: 'Token token=' + playerToken;
+      Authorization: 'Token token=' + playerToken
   });
   gameWatcher.on('change', function(data) {
     var parsedData = JSON.parse(data);
