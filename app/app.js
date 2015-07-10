@@ -79,7 +79,6 @@ var whoseMoveIsIt = function (board) {
   }
 };
 
-
 // block of functions that determine if there is a winner
 var winnerIs = function (player) {
   return winsRow(player) || winsColumn(player) || winsDiagonal(player);
@@ -112,37 +111,6 @@ var clickHandler = function(e) {
   moveSender();
   return getWinner();
 };
-
-// var datafortest = {
-//   "games": [
-//     {
-//       "id": 1,
-//       "cells": ["o","x","o","x","o","x","o","x","o"],
-//       "over": true,
-//       "player_x": {
-//         "id": 1,
-//         "email": "and@and.com"
-//       },
-//       "player_o": {
-//         "id": 3,
-//         "email": "dna@dna.com"
-//       }
-//     },
-//     {
-//       "id": 2,
-//       "cells": ["","","","","","","","",""],
-//       "over": false,
-//       "player_x": {
-//         "id": 3,
-//         "email": "dna@dna.com"
-//       },
-//       "player_o": {
-//         "id": 1,
-//         "email": "and@and.com"
-//       }
-//     }
-//   ]
-// };
 
 // adds a list of games played to the dropdown field below the button
 var listMaker = function(data) {
