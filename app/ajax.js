@@ -158,6 +158,7 @@ var signIn = function() {
   }).done(function(data, textStatus, jqxhr){
     playerToken = data.token;
     toggleElements();
+    $('#maincontainer > p').append('<h4>Logged in as ' + data.credentials.email + '</h4>');
   }).fail(function(jqxhr, textStatus, errorThrown){
     alert('Authorization failed. Please check login and password');
     //$('#result').val('login failed');

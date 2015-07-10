@@ -7,19 +7,19 @@
   <title>Let's play Tic-tac-toe!</title>
 </head>
 <body>
-  <div class="container bg-info">
+  <div class="container bg-info" id="maincontainer">
     <h3>Let's play Tic-Tac-Toe!</h3>
     <h4 class="text-center">To start playing over Interwebs and store/retrieve games, please sign in</h4>
     <p></p>
     <form class="form-inline text-center">
-      <div class="form-group">
+      <div class="form-group" id="emailfield">
         <input type="email" class="form-control" id="email" placeholder="Email">
       </div>
-      <div class="form-group">
+      <div class="form-group" id="passwordfield">
         <input type="password" class="form-control" id="password" placeholder="Password">
       </div>
       <button id="signin" type="submit" class="btn btn-default">Sign in</button>
-      <text>or</text>
+      <text id="ortext">or</text>
       <button id="register" type="submit" class="btn btn-default">Register</button>
       <button id="logout" type="submit" class="btn btn-default hider">Logout</button>
       <p></p>

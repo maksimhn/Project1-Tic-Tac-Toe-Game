@@ -158,12 +158,23 @@ var listMaker = function(data) {
 // toggles visibility of Logout and List buttons
 var toggleElements = function () {
   if (!playerToken) {
+    $('#register').removeClass('hider');
+    $('#signin').removeClass('hider');
+    $('#passwordfield').show();
+    $('#emailfield').show();
     $('#online').addClass('hider');
     $('#logout').addClass('hider');
-    $('#listnew').addClass('hider');
+    $('#ortext').show();
   } else {
+    $('#register').addClass('hider');
+    $('#signin').addClass('hider');
+    $('#ortext').hide();
+    $('#passwordfield').hide();
+    $('#emailfield').hide();
     $('#online').removeClass('hider');
     $('#logout').removeClass('hider');
     $('#listnew').removeClass('hider');
+    $('#ortext').removeClass('hider');
   }
 };
+
