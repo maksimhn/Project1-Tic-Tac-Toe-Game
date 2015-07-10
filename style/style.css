@@ -1,6 +1,3 @@
-/*body {
-  background-image: url("images/background.jpg");
-}*/
 
 .lowerdivs {
   width: 60%;
@@ -15,24 +12,31 @@
   height: 100px;
 }
 
+.container {
+  max-width: 600px;
+}
+
 #mainframe {
   margin-top: 20px;
   height: 400px;
+  width: 600px;
   overflow-y: hidden;
 }
 
-/*#footer {
+#footer {
+  width: 600px;
   margin-top: 20px;
-  height: 100px;
+  margin-bottom: 40px;
   text-align: center;
-}*/
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
 
 
 .activeframe {
-  margin-top: 4%;
-  /*float: left;*/
-  -webkit-transition: top 1s ease;
-  transition: top 1s ease;
+  margin-top: 32px;
   background-color: #9EA3A8;
   width: 342px;
   height: 342px;
@@ -40,8 +44,6 @@
   border-color: black;
   border-width: 6px;
   border-radius: 12px;
-  /*position: relative;
-    top: 23px;*/
 }
 
 #scorex {
@@ -72,12 +74,12 @@
     top: 20px;
 }
 
-.playersnames-shown {
+/*.playersnames-shown {
   padding: 20px;
   opacity: 1;
   visibility:visible;
 }
-
+*/
 .activeframe-down {
   top: 103px;
 }
@@ -175,3 +177,73 @@ p {
   display: none;
 }
 
+@media screen and (max-width: 800px) {
+
+  #footer {
+    width: 400px;
+  }
+
+  .container {
+    width: 400px;
+  }
+
+  #mainframe {
+    width: 400px;
+    height: 400px;
+  }
+
+  #scoreo {
+    float: left;
+    position: relative;
+    left: 80%;
+    bottom: 91%;
+    /*display: none;*/
+  }
+
+  #scorex {
+    /*display: none;*/
+  }
+
+  .boardcells {
+    float: left;
+    width: 85px;
+    height: 85px;
+    position: relative;
+    border-color: black;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 3px;
+    font-size: 300%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 70px;
+  }
+
+  .activeframe {
+    margin-top: 30%;
+    width: 262px;
+    height: 262px;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 8px;
+  }
+}
+
+
+/*#scorex {
+  float: left;
+  text-align: center;
+  position: relative;
+    left: 5%;
+    top: 5%;
+}
+
+
+#scoreo {
+  float: right;
+  text-align: center;
+  position: relative;
+    right: 5%;
+    bottom: 350px;
+}*/

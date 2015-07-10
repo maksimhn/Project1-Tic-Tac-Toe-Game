@@ -15,6 +15,7 @@ The front-end side of the project is based on the following technologies:
   Javascript is used to handle game logic
   jQuery library is used for more efficient DOM manipulation
   AJAX requests are used to communicate with JSON database
+  LoC (Lots of Caffeine)
 
 Known issues and problems:
 
