@@ -22,5 +22,5 @@ The front-end side of the project is based on the following technologies:
   AJAX requests are used to communicate with JSON database
   LoC (Lots of Caffeine)
 
-Known issues:
-  Tests showed that is some rare cases X may be able to move twice.
+To do:
+  Prevent cells that already contain moves to be clickable again

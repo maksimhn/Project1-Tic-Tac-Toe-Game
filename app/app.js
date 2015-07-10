@@ -15,18 +15,17 @@ var getWinner = function () {
     xScore++;
     scoreRender(xScore, oScore);
     boardBlocker('.boardcells');
-    return alert('Congrats, Player X! You are the winner');
+    alert('Congrats, Player X! You are the winner');
   } else if (winnerIs('o')) {
     isGameOver = true;
     oScore++;
     scoreRender(xScore, oScore);
     boardBlocker('.boardcells');
-    return alert('Congrats, Player O! You are the winner');
-  }
-  if (whoseMoveIsIt(currentBoard) === 'full') {
+    alert('Congrats, Player O! You are the winner');
+  } else if (!whoseMoveIsIt(currentBoard)) {
     boardBlocker('.boardcells');
     isGameOver = true;
-    return alert('It\'s a draw!');
+    alert('It\'s a draw!');
   }
 };
 
@@ -49,17 +48,15 @@ var scoreRender = function(scoreX, scoreO) {
 };
 
 // prevents future clicks and hover effects
-var boardBlocker = function(element) {
-  $(element).unbind('click', clickHandler);
-  $(element).removeClass('hovereffect');
+var boardBlocker = function(selector) {
+  //$(selector).off('click', clickHandler);
+  $(selector).removeClass('hovereffect');
 };
 
 // unlocks the board for the next game
 var boardUnblocker = function(board) {
-  for (var i = 0; i < board.length; i++) {
-    $('#cell' + i).bind('click', clickHandler);
-    $('#cell' + i).addClass('hovereffect');
-  }
+    //$('.boardcells').on('click', clickHandler);
+    $('.boardcells').addClass('hovereffect');
 };
 
 // determines whose move is next based on the state of the board
@@ -71,7 +68,7 @@ var whoseMoveIsIt = function (board) {
     }
   }
   if (turnCount === 9) {
-    return 'full';
+    return null;
   } else if (turnCount % 2 !== 0) {
     return 'o';
   } else {
@@ -104,12 +101,13 @@ var allThree = function (player, cellOne, cellTwo, cellThree) {
 // updates currentBoard array and rerenders the board upon a new move
 var clickHandler = function(e) {
   var cellIndex = +$(this).attr('id').charAt(4);
+  var nextMove = whoseMoveIsIt(currentBoard);
   lastMove = cellIndex;
-  currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
-  lastPlayer = whoseMoveIsIt(currentBoard);
+  currentBoard[cellIndex] = nextMove;
+  lastPlayer = nextMove;
   boardRender(currentBoard);
   moveSender();
-  return getWinner();
+  getWinner();
 };
 
 // adds a list of games played to the dropdown field below the button
