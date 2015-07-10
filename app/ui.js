@@ -26,4 +26,6 @@ $(document).ready(function() {
   $('#start').on('click', startGame);
 
   $('#show').on('click', showGame);
+
+  $('#online').on('click', playOnline);
 });

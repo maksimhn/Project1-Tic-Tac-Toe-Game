@@ -158,9 +158,11 @@ var listMaker = function(data) {
 // toggles visibility of Logout and List buttons
 var toggleElements = function () {
   if (!playerToken) {
+    $('#online').addClass('hider');
     $('#logout').addClass('hider');
     $('#listnew').addClass('hider');
   } else {
+    $('#online').removeClass('hider');
     $('#logout').removeClass('hider');
     $('#listnew').removeClass('hider');
   }

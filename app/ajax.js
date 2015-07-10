@@ -1,6 +1,7 @@
 //jQuery.ajax
 
 var playOnline = function() {
+  event.preventDefault();
   gameWatcher = resourceWatcher(sa + '/games/' + $('#gameid').val() + '/watch', {
       Authorization: 'Token token=' + playerToken
   });
@@ -88,7 +89,7 @@ var getList = function(e) {
     $('#listarea').append(listMaker(data));
     // $('#result').val(JSON.stringify(data)); // Make a cool list of games
   }).fail(function(jqxhr, textStatus, errorThrown){
-    alert('List retrieval failed. Please check game ID');
+    alert('List retrieval failed. sign in again');
     // $('#result').val('list failed');
   });
 };

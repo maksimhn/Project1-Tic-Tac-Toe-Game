@@ -22,6 +22,5 @@ The front-end side of the project is based on the following technologies:
   AJAX requests are used to communicate with JSON database
   LoC (Lots of Caffeine)
 
-Known issues and problems:
-
-explanations of the technologies used, the approach taken, unsolved problems
+Known issues:
+  Tests showed that is some rare cases X may be able to move twice.

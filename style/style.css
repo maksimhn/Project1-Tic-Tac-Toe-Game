@@ -12,7 +12,7 @@
 }
 
 .container {
-  padding-top: 40px;
+  padding-top: 30px;
   max-width: 600px;
 }
 
@@ -76,6 +76,10 @@
   top: 103px;
 }
 
+h3 {
+  text-align: center;
+}
+
 h4 {
   position: relative;
     top: 10px;
@@ -112,6 +116,10 @@ p {
   position: relative;
    top: 45%;
    left: 22%;
+}
+
+#logout {
+  margin-top: 10px;
 }
 
 .boardcells {
