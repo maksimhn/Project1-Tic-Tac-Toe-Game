@@ -1,7 +1,9 @@
 //jQuery.ajax
 
+// listens to the server and expects updates from the other player; when recieved, rerenders the board and stores last move made to dedicated variables
 var playOnline = function() {
   event.preventDefault();
+  this.blur();
   gameWatcher = resourceWatcher(sa + '/games/' + $('#gameid').val() + '/watch', {
       Authorization: 'Token token=' + playerToken
   });
