@@ -168,21 +168,6 @@ var toggleElements = function () {
   }
 };
 
-// $(function() {
-//   $('#start').click(function() {
-//     $('.activeframe').toggleClass('activeframe-down');
-//     $('.playersnames').toggleClass('playersnames-shown');
-//   });
-// });
-
-// $(function() {
-//   $('#play').click(function() {
-//     $('.activeframe').toggleClass('activeframe-down');
-//     $('.playersnames').toggleClass('playersnames-shown');
-//   });
-// });
-
-
 
 
 

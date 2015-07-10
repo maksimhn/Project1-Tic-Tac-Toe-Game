@@ -15,31 +15,14 @@ $(document).ready(function() {
      toggleElements();
   });
 
-
-
-
   $('#register').on('click', registerPlayer);
 
   $('#signin').on('click', signIn);
 
-
-
   $('#start').on('click', startGame);
-
-
 
   $('#list').on('click', getList);
 
   $('#show').on('click', showGame);
-
-
-
-
-
-
-
-
-
-
 
 });
