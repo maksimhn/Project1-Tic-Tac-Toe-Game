@@ -1,8 +1,8 @@
 //jQuery.ajax
 
 var playOnline = function() {
-  gameWatcher = resourceWatcher(sa + '/games/' + $('#id').val() + '/watch', {
-      Authorization: 'Token token=' + $('#token').val()
+  gameWatcher = resourceWatcher(sa + '/games/' + $('#gameid').val() + '/watch', {
+      Authorization: 'Token token=' + playerToken;
   });
   gameWatcher.on('change', function(data) {
     var parsedData = JSON.parse(data);
@@ -13,8 +13,11 @@ var playOnline = function() {
     // }
     var gameData = parsedData.game;
     var cell = gameData.cell;
-    $('#index').val(cell.index);
-    $('#value').val(cell.value);
+    currentBoard[cell.index] = cell.value;
+    lastMove = cell.index;
+    lastPlayer = cell.value;
+    boardRender(currentBoard);
+    getWinner();
   });
   gameWatcher.on('error', function(e) {
     console.error('an error occured with the stream', e);
@@ -22,8 +25,8 @@ var playOnline = function() {
 };
 
 // updates a game with a move made; sends a new move and the board's state to the server
-var moveHandler = function (e) {
-  $.ajax(sa + '/games/' + $('#id').val(), {
+var moveSender = function (e) {
+  $.ajax(sa + '/games/' + $('#gameid').val(), {
     contentType: 'application/json',
     processData: false,
     data: JSON.stringify({
@@ -38,12 +41,12 @@ var moveHandler = function (e) {
     dataType: 'json',
     method: 'PATCH',
     headers: {
-      Authorization: 'Token token=' + $('#token').val()
+      Authorization: 'Token token=' + playerToken
     }
   }).done(function(data, textStatus, jqxhr){
-    $('#result').val(JSON.stringify(data));
+    //$('#result').val(JSON.stringify(data));
   }).fail(function(jqxhr, textStatus, errorThrown){
-    $('#result').val('move failed');
+    //$('#result').val('move failed');
   });
 };
 
@@ -61,10 +64,12 @@ var joinGame = function(e) {
         Authorization: 'Token token=' + playerToken
       }
     }).done(function(data, textStatus, jqxhr){
-      $('#result').val(JSON.stringify(data));
+      alert('Joined as O to player ' + data['game']['player_x']['email']);
+      //$('#result').val(JSON.stringify(data));
       boardRender(data.game.cells);
     }).fail(function(jqxhr, textStatus, errorThrown){
-      $('#result').val('join failed');
+      alert('Joining failed. Please check game ID');
+      //$('#result').val('join failed');
     });
 };
 
@@ -79,9 +84,12 @@ var getList = function(e) {
       Authorization: 'Token token=' + playerToken
     }
   }).done(function(data, textStatus, jqxhr){
-    $('#result').val(JSON.stringify(data)); // Make a cool list of games
+    $('#listarea').html('');
+    $('#listarea').append(listMaker(data));
+    // $('#result').val(JSON.stringify(data)); // Make a cool list of games
   }).fail(function(jqxhr, textStatus, errorThrown){
-    $('#result').val('list failed');
+    alert('List retrieval failed. Please check game ID');
+    // $('#result').val('list failed');
   });
 };
 
@@ -96,12 +104,13 @@ var showGame = function() {
       Authorization: 'Token token=' + playerToken
     }
   }).done(function(data, textStatus, jqxhr){
-    currentBoard = date['game']['cells'];
+    currentBoard = data['game']['cells'];
     boardRender(currentBoard);
-    $('#result').val(JSON.stringify(data)); // Make it shown on the board
-    boardRender(data.game.cells);
+    //$('#result').val(JSON.stringify(data)); // Make it shown on the board
+    boardRender(data['game']['cells']);
   }).fail(function(jqxhr, textStatus, errorThrown){
-    $('#result').val('show failed');
+    alert('Game retrieval failed. Please check game ID');
+    //$('#result').val('show failed');
   });
 };
 
@@ -122,9 +131,9 @@ var startGame = function () {
       Authorization: 'Token token=' + playerToken
     }
   }).done(function(data, textStatus, jqxhr){
-    $('#result').val(JSON.stringify(data));
+    //$('#result').val(JSON.stringify(data));
   }).fail(function(jqxhr, textStatus, errorThrown){
-    $('#result').val('create failed');
+    //$('#result').val('create failed');
   });
 };
 
@@ -144,11 +153,11 @@ var signIn = function() {
     dataType: 'json',
     method: 'POST'
   }).done(function(data, textStatus, jqxhr){
-    $('#result').val(data.token); // to DELETE LATER
     playerToken = data.token;
     toggleElements();
   }).fail(function(jqxhr, textStatus, errorThrown){
-    $('#result').val('login failed');
+    alert('Authorization failed. Please check login and password');
+    //$('#result').val('login failed');
   });
   $('#email').val('');
   $('#password').val('');
@@ -171,10 +180,12 @@ var registerPlayer = function () {
     dataType: 'json',
     method: 'POST'
   }).done(function(data, textStatus, jqxhr){
-    $('#result').val(JSON.stringify(data));
+    //$('#result').val(JSON.stringify(data));
   }).fail(function(jqxhr, textStatus, errorThrown){
-    $('#result').val('registration failed');
+    alert('Registration failed. Please check login and password');
+    //$('#result').val('registration failed');
   });
   $('#email').val('');
   $('#password').val('');
 };
+

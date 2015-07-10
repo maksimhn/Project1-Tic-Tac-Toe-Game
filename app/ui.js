@@ -8,10 +8,7 @@ $(document).ready(function() {
   $('.boardcells').on('click', clickHandler);
 
   // loads a list of games to a collapsable area below the button
-  $('#collapseExample').on('show.bs.collapse', function(e) {
-      $('#listarea').html('');
-      $('#listarea').append(listMaker(datafortest));
-  });
+  $('#collapseExample').on('show.bs.collapse', getList);
 
   // reloads the page and resets the token upon click
   $('logout').on('click', function(e) {
@@ -20,13 +17,13 @@ $(document).ready(function() {
      toggleElements();
   });
 
+  $('#join').on('click', joinGame);
+
   $('#register').on('click', registerPlayer);
 
   $('#signin').on('click', signIn);
 
   $('#start').on('click', startGame);
-
-  $('#list').on('click', getList);
 
   $('#show').on('click', showGame);
 });

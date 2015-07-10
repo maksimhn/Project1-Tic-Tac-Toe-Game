@@ -109,42 +109,40 @@ var clickHandler = function(e) {
   currentBoard[cellIndex] = whoseMoveIsIt(currentBoard);
   lastPlayer = whoseMoveIsIt(currentBoard);
   boardRender(currentBoard);
-  moveHandler();
+  moveSender();
   return getWinner();
 };
 
-
-
-var datafortest = {
-  "games": [
-    {
-      "id": 1,
-      "cells": ["o","x","o","x","o","x","o","x","o"],
-      "over": true,
-      "player_x": {
-        "id": 1,
-        "email": "and@and.com"
-      },
-      "player_o": {
-        "id": 3,
-        "email": "dna@dna.com"
-      }
-    },
-    {
-      "id": 2,
-      "cells": ["","","","","","","","",""],
-      "over": false,
-      "player_x": {
-        "id": 3,
-        "email": "dna@dna.com"
-      },
-      "player_o": {
-        "id": 1,
-        "email": "and@and.com"
-      }
-    }
-  ]
-};
+// var datafortest = {
+//   "games": [
+//     {
+//       "id": 1,
+//       "cells": ["o","x","o","x","o","x","o","x","o"],
+//       "over": true,
+//       "player_x": {
+//         "id": 1,
+//         "email": "and@and.com"
+//       },
+//       "player_o": {
+//         "id": 3,
+//         "email": "dna@dna.com"
+//       }
+//     },
+//     {
+//       "id": 2,
+//       "cells": ["","","","","","","","",""],
+//       "over": false,
+//       "player_x": {
+//         "id": 3,
+//         "email": "dna@dna.com"
+//       },
+//       "player_o": {
+//         "id": 1,
+//         "email": "and@and.com"
+//       }
+//     }
+//   ]
+// };
 
 // adds a list of games played to the dropdown field below the button
 var listMaker = function(data) {
