@@ -1,6 +1,4 @@
 
-//jQuery.ajax
-//$(function(){ TURN ON AFTERWARDS
 var gameWatcher;
 'use strict';
 var sa = 'https://young-citadel-2431.herokuapp.com';
@@ -56,6 +54,7 @@ var boardBlocker = function(element) {
   $(element).removeClass('hovereffect');
 };
 
+// unlocks the board for the next game
 var boardUnblocker = function(board) {
   for (var i = 0; i < board.length; i++) {
     $('#cell' + i).bind('click', clickHandler);
@@ -81,7 +80,7 @@ var whoseMoveIsIt = function (board) {
 };
 
 
-// block of functions to determine if there is a winner
+// block of functions that determine if there is a winner
 var winnerIs = function (player) {
   return winsRow(player) || winsColumn(player) || winsDiagonal(player);
 };
@@ -158,6 +157,7 @@ var listMaker = function(data) {
   return finalList + '</ol>';
 };
 
+// toggles visibility of Logout and List buttons
 var toggleElements = function () {
   if (!playerToken) {
     $('#logout').addClass('hider');
@@ -167,15 +167,3 @@ var toggleElements = function () {
     $('#listnew').removeClass('hider');
   }
 };
-
-
-
-
-
-
-  //$('#move').on('click', moveHandler);
-
-
-
-
-//}); TURN ON AFTERWARDS

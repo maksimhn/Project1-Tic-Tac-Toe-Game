@@ -2,7 +2,6 @@
 .lowerdivs {
   width: 60%;
   margin: auto;
-  /*background-color: #9EA3A8;*/
   text-align: center;
   border-radius: 12px;
 }
@@ -19,7 +18,6 @@
 
 
 #mainframe {
-  /*background-color: #F2EBBF;*/
   margin-top: 20px;
   height: 400px;
   width: 560px;
@@ -27,7 +25,6 @@
 }
 
 #footer {
-  /*background-color: #F2EBBF;*/
   width: 540px;
   margin-top: 20px;
   margin-bottom: 40px;
@@ -38,10 +35,8 @@
   padding-top: 10px;
 }
 
-
 .activeframe {
   margin-top: 32px;
-  /*background-color: #9EA3A8;*/
   width: 342px;
   height: 342px;
   border-style: solid;
@@ -57,7 +52,6 @@
     left: 5%;
     top: 5%;
 }
-
 
 #scoreo {
   float: right;
@@ -78,12 +72,6 @@
     top: 20px;
 }
 
-/*.playersnames-shown {
-  padding: 20px;
-  opacity: 1;
-  visibility:visible;
-}
-*/
 .activeframe-down {
   top: 103px;
 }
@@ -159,10 +147,6 @@ p {
   border-left: 0px;
 }
 
-#cell4 {
-
-}
-
 #cell5 {
   border-right: 0px;
 }
@@ -214,11 +198,6 @@ p {
     position: relative;
     left: 80%;
     bottom: 88%;
-    /*display: none;*/
-  }
-
-  #scorex {
-    /*display: none;*/
   }
 
   .boardcells {
@@ -246,21 +225,3 @@ p {
     border-radius: 14px;
   }
 }
-
-
-/*#scorex {
-  float: left;
-  text-align: center;
-  position: relative;
-    left: 5%;
-    top: 5%;
-}
-
-
-#scoreo {
-  float: right;
-  text-align: center;
-  position: relative;
-    right: 5%;
-    bottom: 350px;
-}*/

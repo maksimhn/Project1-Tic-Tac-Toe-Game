@@ -1,3 +1,5 @@
+//jQuery.ajax
+
 var playOnline = function() {
   gameWatcher = resourceWatcher(sa + '/games/' + $('#id').val() + '/watch', {
       Authorization: 'Token token=' + $('#token').val()
@@ -19,7 +21,7 @@ var playOnline = function() {
   });
 };
 
-// updates a game with a move made
+// updates a game with a move made; sends a new move and the board's state to the server
 var moveHandler = function (e) {
   $.ajax(sa + '/games/' + $('#id').val(), {
     contentType: 'application/json',
@@ -45,6 +47,7 @@ var moveHandler = function (e) {
   });
 };
 
+// sends 'join' request to the server
 var joinGame = function(e) {
     event.preventDefault();
     this.blur();
@@ -65,7 +68,7 @@ var joinGame = function(e) {
     });
 };
 
-
+// retrieves a list of games associated with user id
 var getList = function(e) {
   event.preventDefault();
   this.blur();
@@ -82,7 +85,7 @@ var getList = function(e) {
   });
 };
 
-
+// retrieves a specific game by id and shows it on the board
 var showGame = function() {
   event.preventDefault();
   this.blur();
@@ -102,6 +105,7 @@ var showGame = function() {
   });
 };
 
+// starts a new game, renders board blank
 var startGame = function () {
   currentBoard = ["","","","","","","","",""];
   boardRender(currentBoard);
@@ -124,7 +128,7 @@ var startGame = function () {
   });
 };
 
-
+// sends a sign in request; hides unnecessary elements
 var signIn = function() {
   event.preventDefault();
   this.blur();
@@ -150,7 +154,7 @@ var signIn = function() {
   $('#password').val('');
 };
 
-
+// registers a new user with email/password combo
 var registerPlayer = function () {
   event.preventDefault();
   this.blur();

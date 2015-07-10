@@ -1,8 +1,13 @@
+
 $(document).ready(function() {
+
+  // renders 0-0 score after first load
+  scoreRender();
 
   // updates currentBoard array and rerenders the board upon a new move
   $('.boardcells').on('click', clickHandler);
 
+  // loads a list of games to a collapsable area below the button
   $('#collapseExample').on('show.bs.collapse', function(e) {
       $('#listarea').html('');
       $('#listarea').append(listMaker(datafortest));
@@ -24,5 +29,4 @@ $(document).ready(function() {
   $('#list').on('click', getList);
 
   $('#show').on('click', showGame);
-
 });
