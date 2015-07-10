@@ -153,7 +153,7 @@ var listMaker = function(data) {
   var gamesArray = data['games'];
   //$('#listarea').html('<h4>piu</h4>');
   for (var i = 0; i < gamesArray.length; i++) {
-    finalList += '<li><text>Game id: ' + gamesArray[i]['id'] + ', is over: ' + gamesArray[i]['over'] + ', ' + gamesArray[i]['player_x']['email'] + ' played for X, ' + gamesArray[i]['player_o']['email'] + ' played for O' + '</text></li>';
+    finalList += '<li><text>Game id: ' + gamesArray[i]['id'] + ', is over: ' + gamesArray[i]['over'] + ', ' + gamesArray[i]['player_x']['email'] + ' is X, ' + gamesArray[i]['player_o']['email'] + ' is O' + '</text></li>';
   }
   return finalList + '</ol>';
 };

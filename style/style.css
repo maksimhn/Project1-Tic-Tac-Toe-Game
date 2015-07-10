@@ -2,7 +2,7 @@
 .lowerdivs {
   width: 60%;
   margin: auto;
-  background-color: #9EA3A8;
+  /*background-color: #9EA3A8;*/
   text-align: center;
   border-radius: 12px;
 }
@@ -13,18 +13,22 @@
 }
 
 .container {
+  padding-top: 40px;
   max-width: 600px;
 }
 
+
 #mainframe {
+  /*background-color: #F2EBBF;*/
   margin-top: 20px;
   height: 400px;
-  width: 600px;
+  width: 560px;
   overflow-y: hidden;
 }
 
 #footer {
-  width: 600px;
+  /*background-color: #F2EBBF;*/
+  width: 540px;
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
@@ -37,13 +41,13 @@
 
 .activeframe {
   margin-top: 32px;
-  background-color: #9EA3A8;
+  /*background-color: #9EA3A8;*/
   width: 342px;
   height: 342px;
   border-style: solid;
   border-color: black;
   border-width: 6px;
-  border-radius: 12px;
+  border-radius: 22px;
 }
 
 #scorex {
@@ -88,6 +92,14 @@ h4 {
   position: relative;
     top: 10px;
   margin: 5px;
+}
+
+#scorex > text {
+  font-size: 300%;
+}
+
+#scoreo > text {
+  font-size: 300%;
 }
 
 p {
@@ -170,7 +182,7 @@ p {
 }
 
 .hovereffect:hover {
-  background-color: #66CCFF;
+  background-color: #337ab7;
 }
 
 .hider {
@@ -179,8 +191,13 @@ p {
 
 @media screen and (max-width: 800px) {
 
+  #gameid {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
   #footer {
-    width: 400px;
+    width: 360px;
   }
 
   .container {
@@ -188,7 +205,7 @@ p {
   }
 
   #mainframe {
-    width: 400px;
+    width: 360px;
     height: 400px;
   }
 
@@ -196,7 +213,7 @@ p {
     float: left;
     position: relative;
     left: 80%;
-    bottom: 91%;
+    bottom: 88%;
     /*display: none;*/
   }
 
@@ -221,12 +238,12 @@ p {
 
   .activeframe {
     margin-top: 30%;
-    width: 262px;
-    height: 262px;
+    width: 261px;
+    height: 261px;
     border-style: solid;
     border-color: black;
     border-width: 3px;
-    border-radius: 8px;
+    border-radius: 14px;
   }
 }
 
