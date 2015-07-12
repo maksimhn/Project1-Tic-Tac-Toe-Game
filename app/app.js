@@ -1,7 +1,7 @@
 
 var gameWatcher;
 'use strict';
-var sa = 'https://young-citadel-2431.herokuapp.com';
+var sa = 'http://ttt.wdibos.com';
 var player, move, lastMove, lastPlayer, playerToken;
 var isGameOver = false;
 var xScore = 0;
