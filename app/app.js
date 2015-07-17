@@ -15,16 +15,19 @@ var getWinner = function () {
     xScore++;
     scoreRender(xScore, oScore);
     boardBlocker('.boardcells');
+    moveSender();
     alert('Congrats, Player X! You are the winner');
   } else if (winnerIs('o')) {
     isGameOver = true;
     oScore++;
     scoreRender(xScore, oScore);
     boardBlocker('.boardcells');
+    moveSender();
     alert('Congrats, Player O! You are the winner');
   } else if (!whoseMoveIsIt(currentBoard)) {
     boardBlocker('.boardcells');
     isGameOver = true;
+    moveSender();
     alert('It\'s a draw!');
   }
 };
@@ -56,7 +59,11 @@ var boardBlocker = function(selector) {
 // unlocks the board for the next game
 var boardUnblocker = function(board) {
     //$('.boardcells').on('click', clickHandler);
-    $('.boardcells').addClass('hovereffect');
+    for (var i = 0; i < board.length; i++) {
+      if (!board[i]) {
+        $('.boardcells').addClass('hovereffect');
+      }
+    }
 };
 
 // determines whose move is next based on the state of the board
@@ -113,11 +120,15 @@ var clickHandler = function(e) {
 // adds a list of games played to the dropdown field below the button
 var listMaker = function(data) {
   var finalList = '<ol>';
-  var gamesArray = data['games'];
-  //$('#listarea').html('<h4>piu</h4>');
+  var gamesArray = data.games;
   for (var i = 0; i < gamesArray.length; i++) {
-    finalList += '<li><text>Game id: ' + gamesArray[i]['id'] + ', is over: ' + gamesArray[i]['over'] + ', ' + gamesArray[i]['player_x']['email'] + ' is X, ' + gamesArray[i]['player_o']['email'] + ' is O' + '</text></li>';
+    if (gamesArray[i].player_o) {
+    finalList += '<li><text>Game id: ' + gamesArray[i].id + ', is over: ' + gamesArray[i].over + ', ' + gamesArray[i].player_x.email + ' is X, ' + gamesArray[i].player_o.email + ' is O' + '</text></li>';
+    } else {
+      finalList += '<li><text>Game id: ' + gamesArray[i].id + ', is over: ' + gamesArray[i].over + ', ' + gamesArray[i].player_x.email + ' is X, ' + 'Unknown player' + ' is O' + '</text></li>';
+    }
   }
+  console.log(finalList + '</ol>');
   return finalList + '</ol>';
 };
 

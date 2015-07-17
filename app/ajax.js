@@ -1,6 +1,7 @@
 //jQuery.ajax
 
 // listens to the server and expects updates from the other player; when recieved, rerenders the board and stores last move made to dedicated variables
+
 var playOnline = function() {
   event.preventDefault();
   this.blur();
@@ -9,11 +10,6 @@ var playOnline = function() {
   });
   gameWatcher.on('change', function(data) {
     var parsedData = JSON.parse(data);
-    // heroku routers report this as a 503
-    // if (data.timeout) { //not an error
-    //   game.close();
-    //   return console.warn(data.timeout);
-    // }
     var gameData = parsedData.game;
     var cell = gameData.cell;
     currentBoard[cell.index] = cell.value;
@@ -109,8 +105,11 @@ var showGame = function() {
   }).done(function(data, textStatus, jqxhr){
     currentBoard = data['game']['cells'];
     boardRender(currentBoard);
-    //$('#result').val(JSON.stringify(data)); // Make it shown on the board
-    boardRender(data['game']['cells']);
+    isGameOver = data['game']['over'];
+    //boardRender(data['game']['cells']);
+    if (!isGameOver) {
+      boardUnblocker(currentBoard);
+    }
   }).fail(function(jqxhr, textStatus, errorThrown){
     alert('Game retrieval failed. Please check game ID');
     //$('#result').val('show failed');
@@ -134,6 +133,8 @@ var startGame = function () {
       Authorization: 'Token token=' + playerToken
     }
   }).done(function(data, textStatus, jqxhr){
+    console.log(data.game.id)
+    $('#gameid').val(data.game.id);
     //$('#result').val(JSON.stringify(data));
   }).fail(function(jqxhr, textStatus, errorThrown){
     //$('#result').val('create failed');
@@ -158,7 +159,7 @@ var signIn = function() {
   }).done(function(data, textStatus, jqxhr){
     playerToken = data.token;
     toggleElements();
-    $('#maincontainer > p').append('<h4>Logged in as ' + data.credentials.email + '</h4>');
+    //$('#maincontainer > p').append('<h4>Logged in as ' + data.credentials.email + '</h4>');
   }).fail(function(jqxhr, textStatus, errorThrown){
     alert('Authorization failed. Please check login and password');
     //$('#result').val('login failed');
