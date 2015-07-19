@@ -128,7 +128,6 @@ var listMaker = function(data) {
       finalList += '<li><text>Game id: ' + gamesArray[i].id + ', is over: ' + gamesArray[i].over + ', ' + gamesArray[i].player_x.email + ' is X, ' + 'Unknown player' + ' is O' + '</text></li>';
     }
   }
-  console.log(finalList + '</ol>');
   return finalList + '</ol>';
 };
 

@@ -9,6 +9,7 @@ var playOnline = function() {
       Authorization: 'Token token=' + playerToken
   });
   gameWatcher.on('change', function(data) {
+    console.log(data);
     var parsedData = JSON.parse(data);
     var gameData = parsedData.game;
     var cell = gameData.cell;
@@ -33,9 +34,9 @@ var moveSender = function (e) {
         cell: {
           index: lastMove,
           value: lastPlayer
-        }
-      },
-      over: isGameOver
+        },
+        over: isGameOver
+      }
     }),
     dataType: 'json',
     method: 'PATCH',
